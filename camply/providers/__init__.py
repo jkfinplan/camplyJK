@@ -13,6 +13,7 @@ from .recreation_dot_gov.recdotgov_tours import (
     RecreationDotGovTicket,
     RecreationDotGovTimedEntry,
 )
+from .camava.variations import SantaBarbaraCountyParks
 from .usedirect.variations import (
     AlabamaStateParks,
     ArizonaStateParks,
@@ -49,6 +50,7 @@ ProviderType = Union[
     AlabamaStateParks,
     FairfaxCountyParks,
     MinnesotaStateParks,
+    SantaBarbaraCountyParks,
 ]
 
 __all__ = [
@@ -73,4 +75,5 @@ __all__ = [
     "AlabamaStateParks",
     "FairfaxCountyParks",
     "MinnesotaStateParks",
+    "SantaBarbaraCountyParks",
 ]
