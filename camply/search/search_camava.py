@@ -139,4 +139,21 @@ class SearchSantaBarbaraCountyParks(BaseCampingSearch):
         -------
         Any
         """
-        raise NotImplementedError("Campsite unit listing not supported for Camava provider")
+        error_message = (
+            "Campsite listing is not directly supported by the Camava provider.\n\n"
+            "To see available campsites, run a search for a date range:\n\n"
+            "  camply campsites \\\n"
+            "    --provider SantaBarbaraCountyParks \\\n"
+            "    --campground 2 \\\n"
+            "    --start-date 2026-05-01 \\\n"
+            "    --end-date 2026-05-03\n\n"
+            "To search for a specific campsite number:\n\n"
+            "  camply campsites \\\n"
+            "    --provider SantaBarbaraCountyParks \\\n"
+            "    --campground 2 \\\n"
+            "    --campsite 47 \\\n"
+            "    --start-date 2026-05-01 \\\n"
+            "    --end-date 2026-05-03"
+        )
+        logger.error(error_message)
+        raise NotImplementedError(error_message)
