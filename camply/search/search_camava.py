@@ -84,6 +84,11 @@ class SearchSantaBarbaraCountyParks(BaseCampingSearch):
         # If weekends_only and nights not explicitly set to 2, use 2 nights
         nights = self.nights if self.nights > 1 else (2 if self.weekends_only else 1)
         
+        # For weekend searches, only search Friday nights (Friday + Saturday = weekend)
+        # Filter out Saturday since that would give Sat-Mon which isn't a weekend
+        if self.weekends_only:
+            search_days = [day for day in search_days if day.weekday() == 4]  # Friday only
+        
         logger.info(f"Searching {len(search_days)} days with {nights} night stays")
         
         # Search each campground for each search day
