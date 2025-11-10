@@ -71,19 +71,25 @@ class SearchSantaBarbaraCountyParks(BaseCampingSearch):
         -------
         List[AvailableCampsite]
         """
-        from datetime import datetime as dt
+        from datetime import datetime as dt, timedelta
         
         all_campsites = []
         
         # Get campground IDs to search - use provided IDs or default
         campground_ids = self.campgrounds if self.campgrounds else [2]  # Default to Jalama
         
-        # Search each campground for each date range
+        # Get all search days from base class (handles weekends filtering)
+        search_days = self._get_search_days()
+        
+        # If weekends_only and nights not explicitly set to 2, use 2 nights
+        nights = self.nights if self.nights > 1 else (2 if self.weekends_only else 1)
+        
+        # Search each campground for each search day
         for campground_id in campground_ids:
-            for search_window in self.search_window:
-                # Convert date to datetime
-                start_date = dt.combine(search_window.start_date, dt.min.time())
-                end_date = dt.combine(search_window.end_date, dt.min.time())
+            for search_day in search_days:
+                # Create datetime for start and end
+                start_date = dt.combine(search_day, dt.min.time())
+                end_date = start_date + timedelta(days=nights)
                 
                 try:
                     campsites = self.campsite_finder.get_campsites(
