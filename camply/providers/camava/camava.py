@@ -385,8 +385,9 @@ class CamavaProvider(BaseProvider):
                 except:
                     pass
             
-            # Create booking URL (Camava doesn't support direct site links)
-            booking_url = f"{self.base_url}{self.reservation_path}"
+            # Create booking URL with site ID as URL fragment for uniqueness
+            # Note: Camava doesn't use this, but it makes URLs unique for logging
+            booking_url = f"{self.base_url}{self.reservation_path}#site-{site_id}"
             
             # Create campsite object
             campsite = AvailableCampsite(
