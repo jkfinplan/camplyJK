@@ -1,0 +1,1922 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:image" content="https://reservations.sbparks.org/library/img/BigSBParksLogo.png">
+<meta property="og:url" content="https://reservations.sbparks.org/myaccount">
+<meta property="fb:app_id" content="">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://reservations.sbparks.org/myaccount">
+<link rel="shortlink" href="https://reservations.sbparks.org/myaccount">
+<link rel="icon" href="/library/img/favicon.png">
+<meta property="og:description" content="Online Guest Accounts Portal @ Santa Barbara County Parks">
+<meta property="og:title" content="Manage your Camping Reservations at Santa Barbara County Parks">
+<title>Guest Reservations | Santa Barbara County Parks</title>
+<meta name="description" content="Official Site for Park Reservations at all Santa Barbara County Parks.">
+<link rel="stylesheet" href="/library/css/reset.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,800;1,400&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/filemanager/cdn/bootstrap/5.3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="/filemanager/cdn/font-awesome/css/fontawesome-5.13.0.min.css">
+<link rel="stylesheet" href="/filemanager/cdn/flatpickr/css/flatpickr-4.6.13.min.css">
+<link rel="stylesheet" href="/filemanager/cdn/flatpickr/css/itinio-datepicker.css">
+<link rel="stylesheet" href="/filemanager/cdn/select2/4.1.0-rc.0/css/select2.min.css">
+<link rel="stylesheet" href="/filemanager/cdn/lightbox/css/lightbox.css">
+<link rel="stylesheet" href="/filemanager/cdn/datatables-bs-5/datatables.min.css">
+<link rel="stylesheet" href="/library/css/reserve.css?v461">
+<link rel="stylesheet" href="/library/css/mobileNav.css?v562">
+<link rel="stylesheet" href="/library/css/home.css?v67">
+<link rel="stylesheet" type="text/css" media="screen" href="/library/css/login.css?v=77">
+<link rel="stylesheet" type="text/css" media="screen" href="/library/css/myaccount.css?v=45">
+</head>
+<body>
+<input type="hidden" name="CSRFToken" id="CSRFToken" value="jy8436agbqak1hf4s2gop51ykumxgqxagqn3xis8">
+<main>
+<div class="background-div container-fluid"></div>
+<div class="mainContent m-0 formCells" id="loginDashboardMainContent">
+<input type="hidden" id="loginScreen" value="true">
+<div id="loginDashboard">
+<div class="container mainBody" role="main">
+<div class="row justify-content-md-center">
+<div class="col-md-auto card border border-dark rounded-0 py-3" id="loginDashboardCredentials">
+<input type="hidden" id="emailValidationError" value="{}">
+<div class="col-12 text-center">
+<a href="https://reservations.sbparks.org/" target="_self">
+<img id="modalLogo" class="card-img-top" src="/library/img/BigSBParksLogo.png">
+</a>
+</div>
+<div class="col-12 text-center card-body pt-0">
+<div class="moreInfoHeader" data-bs-toggle="modal" data-bs-target="#moreInformationModal">
+<h2 class="featured-block-title">View Reservations</h2>
+<sup><i class="fas fa-info-circle infoCircle"></i></sup>
+</div>
+<div class="modalData">
+<div class="modal-body" id="authorizationFlow">
+<div id="oAuthButtons">
+</div>
+<div id="checkUserAccount">
+<input type="email" class="form-control text-center" placeholder="Email" id="userEmailInput" onchange="VerifyEmail.changeEmailInput(event);">
+<button class="btnVerify btn btn-lg text-white my-2 py-2 w-100 text-uppercase" type="button" style="border: none;" onclick="VerifyEmail.validateEmail();">
+Send <span class="d-none d-lg-inline-block">Verification</span> Code
+</button>
+</div>
+<div id="emailTokenDiv" style="display: none;">
+<div id="resendTokenDiv" style="display: none;">
+<div class="modalAuthText">Code already sent, please refer to your email.</div>
+</div>
+<div id="validTokenDiv" style="display: none;">
+<div class="modalAuthText">Code already sent and is still valid, please refer to your email.</div>
+</div>
+<div id="expiredTokenDiv" style="display: none;">
+<div class="modalAuthText">Previous code has expired and a new code has been sent, please refer to your email.</div>
+</div>
+<div id="codeEmailedToDiv" style="display: none;">
+<div class="modalAuthText"></div>
+</div>
+<input type="text" class="form-control text-center" style="text-transform: uppercase" placeholder="Enter Security Code" id="userSecurityCode" maxlength="6" onchange="VerifyEmail.changeCodeInput(event);">
+<button class="btnVerify btn btn-lg text-white mt-2 py-2 w-100 text-uppercase" type="button" onclick="VerifyEmail.validateEmail();"><div>Submit</div></button>
+<div class="text-center text-muted mt-3" style="font-size: 14px;">Still nothing? <a style="font-size: 14px; color: #dc3545;" href="javascript:;" id="resendToken" onclick="VerifyEmail.resendEmailValidation();"><u>Send Again</u></a></div><br>
+<span class="text-center text-muted" style="margin-top: 20px;"><a href="javascript:;" id="resendToken" onclick="VerifyEmail.cancelEmailValidation();"><u style="font-size: 14px; color: #dc3545;">Cancel Email Validation</u></a></span>
+</div>
+<div id="invalidEmailDiv" style="display: none;">
+<div class="modalAuthText" id="invalidEmailText"></div>
+<input type="email" class="form-control text-center" placeholder="Email" id="userEmailReInput" onchange="VerifyEmail.changeEmailInput(event);">
+<button class="btnReEnterEmail btn btn-lg text-white mt-2 py-2 w-100 text-uppercase" type="button" onclick="VerifyEmail.validateEmail();">Submit</button>
+<div class="mt-3" id="backBtn">
+<span class="text-center text-muted"><a href="javascript:;" id="backAuthFlowBtn"><u style="font-size: 14px; color: #dc3545;">Not Now</u></a></span>
+</div>
+</div>
+<div id="emailMatchDiv" class="alert alert-secondary text-center my-4">
+Your login email must be the same as the email on your reservations
+</div>
+<div id="privacyStatment">
+<span class="text-center text-muted">By signing in, you agree to <span class="hideMobileText">our</span> <br> <a href="https://reservations.sbparks.org/myaccount/privacy" target="_blank"><u>Terms of Service and Privacy Policy</u></a></span>
+</div>
+</div>
+<div class="modal-body" id="requireEmail" style="display: none;">
+<div class="modalAuthText">Email required. Validation with your email will provide access your related invoices.</div>
+<div class="btnAddEmail btn btn-lg text-white mt-2 py-2 w-100 text-uppercase" id="" onclick="FacebookAuth.handleAuthClick();">
+<div>Add Email</div>
+</div>
+<div class="btnDeny btn btn-lg text-white mt-2 py-2 w-100 text-uppercase" id="" onclick="FacebookAuth.updateSigninStatus(true);">
+<div>Don't Add Email</div>
+</div>
+<div id="privacyStatment">
+<span class="text-center text-muted">Upon granting email permission, we do not store any additional data.</span>
+</div>
+</div>
+<div class="modal-body" id="restartFlow" style="display: none;">
+<div class="modalAuthText">An error has occured and been logged. <br> Please try again.</div>
+<div class="btnDeny btn btn-lg text-white mt-2 py-2 w-100 text-uppercase" onclick="location.reload()">
+<div>Okay</div>
+</div>
+</div>
+<div class="modal-body text-center" id="userLockout" style="display: none;">
+<div class="modalAuthText" id="lockoutMessage">Too many failed validation attempts, try again later.</div>
+<div class="btnDeny btn btn-lg text-white mt-2 py-2 w-100 text-uppercase" onclick="location.reload()">
+<div>Okay</div>
+</div>
+</div>
+<div class="modal-body text-center" id="loadingSpinner" style="display: none;">
+<div id="validationType" class="modalAuthText"></div>
+<div class="spinner-border mt-3" role="status">
+<span class="visually-hidden">Loading...</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade in" tabindex="-1" id="moreInformationModal" aria-labelledby="moreInformationModal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content rounded-0">
+<div class="modal-header">
+<h4 class="modal-title">
+Santa Barbara County Parks
+<br>
+<span>Your Information</span>
+</h4>
+<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<div class="col-12">
+<p>
+You can view your reservation history at any time based on your verified email address. Your email address must be the same as the email address on your reservation. You may use your Google, or personal email account to authenticate your email address.
+</p>
+<p>
+If your browser currently has an active session login via Google, the button displayed may display as the current user you have currently logged in with. That does not mean your are logged into 'Online Guest Reservations', nor that an account has been established.
+</p>
+<p>
+Note that we <span class="fw-bold">DO NOT</span> share personal or reservation information with any of the associated social networks, and you may choose to remove your account association with them at any time.
+</p>
+</div>
+<div class="col-12 mt-3">
+<p>
+View <a href="https://reservations.sbparks.org/myaccount/privacy" target="_blank"><u class="text-white">Privacy Policy</u></a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="modal fade in dashboardModal guestAccountModal" id="sessionExpiredModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="sessionExpiredModal" aria-hidden="true">
+<form id="sessionExpiredForm" method="post" action="/myaccount/">
+<input type="hidden" id="sessionExpired" name="sessionExpired" value="true">
+</form>
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title">Session Expired</h4>
+<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<p>For security purposes, sessions are limted to one hour.</p>
+<p>You may close this window, or click anywhere to return to login.</p>
+</div>
+</div>
+</div>
+</div>
+<script src="/filemanager/cdn/jquery/jquery-3.6.4.min.js"></script>
+<script src="/filemanager/cdn/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="/filemanager/cdn/flatpickr/js/flatpickr-4.6.13.js"></script>
+<script src="/filemanager/cdn/moment/2.29.1/moment.min.js"></script>
+<script src="/filemanager/cdn/luxon/luxon.min.js"></script>
+<script src="/filemanager/cdn/lightbox/js/lightbox.js"></script>
+<script src="/filemanager/cdn/select2/4.1.0-rc.0/js/select2.min.js"></script>
+<script src="/filemanager/cdn/datatables-bs-5/datatables.min.js"></script>
+<script src="/filemanager/cdn/jquery-mask/jquery.mask.min.js"></script>
+<script>
+/**
+* JS Scripts to handle all OAuth Logic
+*/
+// URL's
+var siteURL = "https://reservations.sbparks.org/myaccount/";
+var urlRedirect = "https://reservations.sbparks.org/myaccount/";
+/**
+* isNewGuestAccount
+*
+* Runs a quick request to check to see if the current user who is
+* attempting to login already has an account created.
+* If new account, update spinner text to state account is being created.
+*
+* @param {string} userKey
+* @param {string} authType
+*
+* @return {boolean}
+*/
+function isNewGuestAccount( userKey, authType ) {
+return $.ajax({
+method: 'POST',
+url: '/myaccount/validateUser.html',
+data: {
+'findGuestAccount': userKey,
+'CSRFToken': csrfToken
+}
+}).done(function( response, status, xhr ) {
+// Was a redirect received
+if ( xhr.getResponseHeader( 'login' ) ) {
+location.reload();
+} else {
+if( JSON.parse( response ).isNewAccount ) {
+$("#validationType").text(`Updating Guest Account for ${ authType } Login`);
+}
+}
+});
+}
+/**
+* EmailVerification Class Function
+*
+* Houses all of the functions regarding a user proceeding to use Email Authentication
+* as their validation method.
+*
+* @param {Boolean} isAuthorized
+* @param {String} email
+* @param {Boolean} emailValid
+* @param {String} userToken
+*/
+function EmailVerification( isAuthorized = false, email = '', emailValid = false, userToken = '', resendToken = false ) {
+this.isAuthorized = isAuthorized;
+this.email = email;
+this.emailValid = emailValid;
+this.userToken = userToken;
+this.resendToken = resendToken;
+// Determine if accessing from another page within the software
+this.externalPage = false;
+// Listens for changing email input, and validates the email
+this.changeEmailInput = function( event ) {
+this.email = event.target.value;
+this.emailValid = validateEmail( event.target.value );
+}
+// Listens for changing the user emailed token input
+this.changeCodeInput = function( event ) {
+this.userToken = event.target.value.trim().toUpperCase();
+this.isAuthorized = true;
+}
+/**
+* validateEmail
+*
+* Will allow the user to validate their email address via a created auth token.
+* Provides the ability to allow users to resend the token.
+*/
+this.validateEmail = function() {
+// is user logging in via modal?
+var memberModal = $('#memberModal').is(':visible');
+if( this.emailValid || validateEmail( this.email) ) {
+if( memberModal ) {
+// Lock modal from close
+$('#memberModal').off().attr('data-keyboard', false).attr('data-backdrop', 'static')
+}
+// Show Loading Spinner
+$('#authorizationFlow, #requireEmail, .moreInfo, .moreInfoHeader').hide();
+$('#loadingSpinner #validationType').html('Authenticating with <br> ' + this.email );
+$('#loadingSpinner').show();
+// Ajax data
+data = {
+'isAuthorized': VerifyEmail.isAuthorized,
+'UserToken': VerifyEmail.userToken,
+'AuthToken': VerifyEmail.email,
+'ResendToken': VerifyEmail.resendToken,
+'OAuthType': 'Email',
+'CSRFToken': csrfToken
+}
+// Check to see if we have a new Guest Account before big ajax request
+if( VerifyEmail.userToken !== '' ) {
+isNewGuestAccount( VerifyEmail.email, 'Email' );
+}
+if( VerifyEmail.externalPage ) {
+// Middle of reservation?
+let stage = $("#resForm input[name=stage]").val();
+data.resFormStage = stage ? stage : 0;
+}
+$.ajax({
+method: 'POST',
+url: '/myaccount/validateUser.html',
+data: data
+}).done(function( response, status, xhr ) {
+// Was a redirect received
+if ( xhr.getResponseHeader( 'login' ) ) {
+location.reload();
+} else {
+var loggedIn = $(response).find('#isLoggedIn').val() === 'true';
+VerifyEmail.emailValid = $(response).find('#emailValidated').val() === 'true';
+if( memberModal ) {
+if( VerifyEmail.externalPage && loggedIn ) {
+// Nothing keep showing spinner
+} else {
+// Not replacing whole page when loggin in via modal. Need to grab specific html
+$('#memberModal').find('.modalData').html($(response).find('.modalData'));
+$('.moreInfo, .moreInfoHeader').css('display', '-webkit-inline-box');
+if( loggedIn ) {
+//Map through each response div and check for .mainContent to replace in html
+$(response).map(function(index, value) {
+if( this.id === 'loginDashboardMainContent' ) {
+$('.mainContent').html(this);
+}
+})
+}
+}
+} else {
+// Map through each response div and check for .mainContent to replace in html
+$(response).map(function(index, value) {
+if( this.id === 'loginDashboardMainContent' ) {
+$('.mainContent').replaceWith(this);
+}
+})
+}
+// Check for errors
+var emailValidationError = $(response).find("#emailValidationError").val();
+var errorData = (emailValidationError) ? JSON.parse(emailValidationError) : {};
+// Errors?
+if( emailValidationError !== undefined && !$.isEmptyObject( errorData ) ) {
+if( 'ISAUTHORIZED' in errorData ) {
+VerifyEmail.isAuthorized = errorData.ISAUTHORIZED;
+}
+if( 'ISEMAILVALID' in errorData ) {
+VerifyEmail.emailValid = errorData.ISEMAILVALID;
+}
+if( errorData.MESSAGE === 'BADREQUEST' ) {
+alertUserError();
+} else {
+// Alert error
+alertUserError( false, 'Email', errorData.MESSAGE, errorData.DETAIL );
+}
+} else if( VerifyEmail.emailValid && VerifyEmail.isAuthorized && loggedIn ) { // Email validity determined by server
+if( VerifyEmail.externalPage ) {
+var stage = $(response).find("#resFormStage").val();
+// Check our form stage
+if( stage ) {
+// Reload Online form with current form var
+reloadReservationPage( stage );
+} else {
+// Reload my account page
+window.location.replace( urlRedirect );
+}
+} else {
+// Load dashboard css
+location.reload();
+}
+} else if( VerifyEmail.email !== '' ) {
+if( emailValidationError !== undefined && $.isEmptyObject(errorData) ) {
+// show next step in auth flow
+$('#emailTokenDiv').show();
+$('.moreInfo, .moreInfoHeader').css('display', '-webkit-inline-box');
+$('#oAuthButtons, #checkUserAccount, #invalidEmailDiv').hide();
+$('#codeEmailedToDiv .modalAuthText').html('A security code has been emailed to: <br>' + VerifyEmail.email );
+$('#codeEmailedToDiv').show();
+} else {
+alertUserError();
+}
+}
+}
+});
+} else {
+// Show user their email is invalid
+$('#checkUserAccount, #oAuthButtons').hide();
+$('#invalidEmailDiv').show();
+$('#invalidEmailDiv div#invalidEmailText').html('Please enter a valid email address');
+$('#userEmailReInput').val('').focus();
+/**
+* Return to Auth Flow and clean inputs
+*/
+$('#backAuthFlowBtn').on('click', function() {
+$('#checkUserAccount, #oAuthButtons').show();
+$('#invalidEmailDiv').hide();
+$('#userEmailInput, #userReEmailInput').val('');
+VerifyEmail.email = '';
+// Re-render Google Btn
+GoogleAuth.renderGoogleButton();
+});
+}
+}
+/**
+* cancelEmailValidation
+*
+* Allows user to cancel their email validation process, revoking access
+* to allow restart.
+*
+* @param {Boolean} externalPage
+*/
+this.cancelEmailValidation = function( externalPage = false ) {
+// Show Loading Spinner
+$('#authorizationFlow, #requireEmail, .moreInfo, .moreInfoHeader').hide();
+$('#loadingSpinner #validationType').html('Canceling Authentication with <br> ' + this.email );
+$('#loadingSpinner').show();
+// ajax data
+data = {
+'isAuthorized': false,
+'userDeniedPermissions': true,
+'OAuthType': 'Email',
+'CSRFToken': csrfToken
+};
+$.ajax({
+method: 'post',
+url: '/myaccount/validateUser.html',
+data: data
+}).done(function( response, status, xhr ) {
+location.reload();
+});
+}
+// User is requesting to resend another token
+this.resendEmailValidation = function() {
+this.resendToken = true;
+VerifyEmail.validateEmail();
+}
+// Log out
+this.revokeAccess = function() {
+// Ajax Data
+data = {
+'isAuthorized': this.isAuthorized,
+'UserToken': this.userToken,
+'OAuthType': 'Email',
+'LogOut': true,
+'CSRFToken': csrfToken
+}
+// Disconnect user from our application and log them out of facebook
+$( ".mainContent" ).load( "/myaccount/validateUser.html", data, function( response, status, xhr ) {
+location.reload();
+});
+}
+}
+/**
+* decodeJWT
+*
+* Decodes and Parses a JSON Web Token into a readable
+* JSON object.
+*
+* @param {string} token
+* @return {object}
+*/
+function decodeJWT( token ) {
+var base64Url = token.split('.')[1];
+var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+}).join(''));
+return JSON.parse(jsonPayload);
+};
+/**
+* collapseMobileHeader
+*
+* If user is on mobile, collapse the header once logged in.
+*/
+function collapseMobileHeader() {
+// Collapse the navbar after login on mobile
+var openNav = $("#myAccountnavbarToggler").hasClass("show");
+if ( openNav === true ) {
+$("button.navbar-toggler").click();
+}
+}
+/**
+* alertUserError
+*
+* If a user does not grant our app permission to access their email, ask them again stating why.
+* Else, if any other error occurs at any point during authentication flow after permission granted, alert of error.
+*
+* If FacebookAuth.userDeniedPermission is true, then user manually denied email permissions via our app auth flow,
+* otherwise if just validationError is set, then permissions were revoked outside of our app auth flow.
+*
+* @param {Boolean}	validationError
+* @param {string}	authType
+* @param {string}	message
+* @param {string}	messageDetail
+*/
+function alertUserError( validationError = false, authType = '', message = '', messageDetail = '' ) {
+// is user logging in via modal?
+let memberModal = $('#memberModal').is(':visible');
+var screenView = 'loginDashboardCredentials';
+if( memberModal ) {
+screenView = 'memberModal';
+}
+// No auth type, display default error and log out auth libraries
+if( authType === '' ) {
+// Default error statement
+$(`#${screenView}`).find('#restartFlow, #btnMember').show();
+$(`#${screenView}`).find('#authorizationFlow, #requireEmail, #loadingSpinner, #userLockout, #btnMemberLogout').hide();
+$('#memberModal').on('hidden.bs.modal', function() {
+// Disconnect from our client auth SDK's
+if( GoogleAuth.isAuthorized ) {
+GoogleAuth.revokeAccess();
+} else if( FacebookAuth.isAuthorized ) {
+FacebookAuth.revokeAccess();
+} else if( VerifyEmail.isAuthorized ) {
+VerifyEmail.revokeAccess();
+}
+});
+}
+/**
+* Determine our Auth Library and display error message
+*
+* @param {[type]} authType [description]
+* @return {[type]} [description]
+*/
+switch ( authType ) {
+case 'Email':
+if( validationError ) {
+VerifyEmail.revokeAccess();
+} else {
+switch( message ) {
+case 'Invalid Token':
+// User entered incorrect token, Provide ability to resend token
+$(`#${screenView}`).find('#resendTokenDiv').show().css('margin-bottom', '30px').html( `<div class="modalAuthText">${message}</div>` );
+$('#emailTokenDiv').show();
+$('#checkUserAccount, #oAuthButtons').hide();
+VerifyEmail.userToken = '';
+$(`#${screenView}`).find('#userSecurityCode').val('').focus();
+break;
+case 'Token Expired':
+// Resend token to user and let them know
+$(`#${screenView}`).find('#emailTokenDiv, #expiredTokenDiv').show();
+$(`#${screenView}`).find('#invalidEmailDiv, #checkUserAccount, #oAuthButtons').hide();
+break;
+case 'Token Valid':
+$(`#${screenView}`).find('#emailTokenDiv, #validTokenDiv').show();
+$(`#${screenView}`).find('#invalidEmailDiv, #checkUserAccount, #oAuthButtons').hide();
+break;
+case 'Restart AuthFlow':
+$(`#${screenView}`).find('#restartFlow').show();
+$(`#${screenView}`).find('.modalAuthText').html( `${message} <br> ${messageDetail}` );
+$(`#${screenView}`).find('#authorizationFlow, #requireEmail, #loadingSpinner, #userLockout').hide();
+// Re-render Google Btn
+GoogleAuth.renderGoogleButton();
+$('#memberModal').on('hidden.bs.modal', function() {
+location.reload();
+});
+break;
+case 'User Lockout':
+if( messageDetail !== '' ) {
+$(`#${screenView}`).find('#userLockout div#lockoutMessage').html( `<div class="modalAuthText">${messageDetail}</div>` );
+}
+$(`#${screenView}`).find('#userLockout').show();
+$(`#${screenView}`).find('#authorizationFlow, #requireEmail, #loadingSpinner, #restartFlow').hide();
+$('#memberModal').on('hidden.bs.modal', function() {
+location.reload();
+});
+break;
+case 'Email Not Found':
+// Alert user no email on file
+$(`#${screenView}`).find('#emailTokenDiv, #resendTokenDiv, #oAuthButtons, #checkUserAccount').hide();
+$(`#${screenView}`).find('#invalidEmailDiv').show();
+$(`#${screenView}`).find('#invalidEmailDiv div#invalidEmailText').html( `<div class="modalAuthText">Email Not Found<br><br>Online Guest Accounts requires a reservation with an associated email address.</div>` );
+// Clean inputs
+$(`#${screenView}`).find('#userEmailInput, #userEmailReInput').val('');
+VerifyEmail.email = '';
+// Hide the reinput div, and back to auth flow
+$(`#${screenView}`).find('#backAuthFlowBtn').on('click', function() {
+$(`#${screenView}`).find('#checkUserAccount, #oAuthButtons').show();
+$(`#${screenView}`).find('#invalidEmailDiv').hide();
+// Re-render Google Btn
+GoogleAuth.renderGoogleButton();
+});
+break;
+default:
+// do nothing
+break;
+}
+}
+break;
+case 'Facebook':
+// User denied email, required for data access
+if( validationError && !FacebookAuth.userDeniedPermission ) {
+$(`#${screenView}`).find('#restartFlow').show();
+$(`#${screenView}`).find('#authorizationFlow, #requireEmail, #loadingSpinner, #userLockout').hide();
+$('#memberModal').on('hidden.bs.modal', function() {
+location.reload();
+});
+} else if( FacebookAuth.userDeniedPermission ) {
+// Just reload page without showing a modal
+location.reload();
+} else if( validationError ) {
+// Backend error validating user with info provided
+FacebookAuth.revokeAccess();
+} else if( message === 'Email Not Found' ) {
+// $('#restartFlow div').first().text(messageDetail);
+$('#restartFlow div').first().html('Email Not Found<br><br>Online Guest Accounts requires a reservation with an associated email address.');
+$('.modalData .modal-body').hide();
+$('.modalData #restartFlow').show();
+} else if( message === 'User Lockout' ) {
+FB.logout();
+FacebookAuth = {};
+if( messageDetail !== '' ) {
+$(`#${screenView}`).find('#userLockout div#lockoutMessage').html( messageDetail );
+}
+$(`#${screenView}`).find('#userLockout').show();
+$(`#${screenView}`).find('#authorizationFlow, #requireEmail, #loadingSpinner, #restartFlow').hide();
+$('#memberModal').on('hidden.bs.modal', function() {
+location.reload();
+});
+} else if( message === 'Error Logged' ) {
+$(`#${screenView}`).find('#authorizationFlow, #requireEmail, #loadingSpinner, #restartFlow').hide();
+$('#restartFlow').show();
+} else {
+$(`#${screenView}`).find('#authorizationFlow, #requireEmail').hide();
+$(`#${screenView}`).find('#requireEmail').show();
+// Show auth flow
+$('#memberModal').on('show.bs.modal', function () {
+$('#authorizationFlow').show();
+$('#requireEmail').hide();
+});
+}
+break;
+case 'Google':
+// Need to hide modal overlay
+if( GoogleAuth.externalPage ) {
+}
+if( validationError ) {
+GoogleAuth.revokeAccess();
+} else if( message === 'Email Not Found' ) {
+$('#restartFlow div').first().html('Email Not Found<br><br>Online Guest Accounts requires a reservation with an associated email address.');
+$('.modalData .modal-body').hide();
+$('.modalData #restartFlow').show();
+} else if( message === 'User Lockout' ) {
+if( messageDetail !== '' ) {
+$(`#${screenView}`).find('#userLockout div#lockoutMessage').html( messageDetail );
+}
+$(`#${screenView}`).find('#userLockout').show();
+$(`#${screenView}`).find('#authorizationFlow, #requireEmail, #loadingSpinner, #restartFlow').hide();
+} else if( message === 'Error Logged' ) {
+$(`#${screenView}`).find('#authorizationFlow, #requireEmail, #loadingSpinner, #restartFlow').hide();
+$('#restartFlow').show();
+}
+break;
+// Reload page
+$('#memberModal').on('hidden.bs.modal', function() {
+location.reload();
+});
+default:
+// nothing
+break;
+}
+// Error's been given to user, clear out error field
+$("#emailValidationError").val(JSON.stringify({}))
+}
+/**
+* validateEmail
+*
+* Simple RegEx function to properly validate the user input is an email
+*
+* @param {string}	inputText
+*
+* @return {boolean}
+*/
+function validateEmail( inputText ) {
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if( inputText.match( mailformat ) ) {
+// Valid
+return true;
+}
+// Invalid
+return false;
+}
+/**
+* reloadReservationPage
+*
+* Will allow user to continue their reservation
+* from whatever stage of the process they are currently in.
+*
+* @param {Number} stage
+*/
+function reloadReservationPage( stage = 0 ) {
+// Submit the form
+$('#resForm [name="stage"]').val( stage );
+$('#resForm').submit();
+}
+</script>
+<script>
+// Customer will be defined once user has logged in.
+var Customer;
+/**
+* loadDashboard
+*
+* Loads dashboard CSS and JS
+*/
+function loadDashboard() {
+// Mobile Menu
+$("#mobileMenu").on("click tap", function() {
+$(".nav-content").toggleClass("showNav hideNav").removeClass("d-none");
+$(this).toggleClass("animated");
+});
+// Show logout spinner
+$('.modal-backdrop').remove();
+$('#logoutModal').modal('show');
+// Send back to previous page
+$('#newReservationForm').submit();
+// remove parent main content class if above our login nav
+if( $('#dashboardMenuNav').parent().hasClass('mainContent') ) {
+$('#dashboardMenuNav').parent().removeClass('mainContent');
+}
+// Specific JS Functions for Mobile vs Desktop
+if( window.matchMedia("(min-width: 991px)").matches ) {
+// Enable tooltips
+$('[data-toggle="tooltip"], .refreshAccounts').tooltip('enable');
+// Toggle Menu Dropdowns on hover
+$('#navbarNavDropdown ul li a.dropdown-toggle').on('mouseover', function() {
+// Init via Popper JS
+let dropdown = new bootstrap.Dropdown( this );
+// Show if not already open
+if( !dropdown._element.classList.contains('show') ) {
+dropdown.toggle();
+}
+// Hide dropdown when we leave the dropdown menu
+$('#navbarNavDropdown ul li ul.dropdown-menu.show').on('mouseleave', function() {
+// Hide if not already open
+if( dropdown._element.classList.contains('show') ) {
+dropdown.toggle();
+$( dropdown._element ).blur();
+}
+});
+});
+} else {
+// Disable dropdown menu hover functionality
+$('#navbarNavDropdown ul li a.dropdown-toggle').off('mouseover');
+$('#navbarNavDropdown ul li ul.dropdown-menu.show').off('mouseleave');
+// Disable tooltips
+$('[data-toggle="tooltip"], .refreshAccounts').tooltip('disable');
+}
+// Hide Modal
+$('#memberModal').modal('hide');
+// Show Logout Buton
+$('#btnMember').hide();
+// Collapse Mobile header on dropdown menu click as well
+$('#guestAccountMenu .dropdown-item').on('click', function() {
+collapseMobileHeader();
+});
+// Handle Side Navs
+// Get Reservations, Initialize filters and datatable for Reservation List History
+initializeReservationList();
+// Collapse mobile header
+collapseMobileHeader();
+// Keep the sidebar height relevant to the reservation history
+resizeSidebar();
+// Mobile Menu Collapse
+$('#menu').on('click', () => {
+if( $('.linkNav').is(':visible') ) {
+$('.linkNav').css('height', '').removeClass('d-block');
+} else {
+$('.linkNav').css('height', '330px').addClass('d-block');
+}
+});
+// Enable Tooltips
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+}
+/**
+* btnReserve
+*
+* Send user to payment stage of reservation
+*/
+function btnReserve() {
+$('#btnPayRes span.fa-stack').html('<i class="fas fa-circle-notch fa-spin fa-stack-2x"></>');
+$('#newReservationForm input[name="stage"]').val( 2 );
+$('#newReservationForm input[name="reserve"]').val( true );
+$('#newReservationForm').submit();
+}
+/**
+* changeReservation
+*
+* Sends the user back their reservation
+*/
+function changeReservation() {
+$( event.currentTarget ).find('i.loadingIcon').removeClass().addClass('fas fa-circle-notch fa-spin');
+$('#newReservationForm input[name="stage"]').val( 2 );
+$('#newReservationForm input[name="reserve"]').val( false );
+$('#newReservationForm').submit();
+}
+/**
+* getInvoiceDetails
+*
+* Returns the detailed data for the selected invoice
+*
+* @param {integer} invoiceNumber
+* @param {integer} accountID
+*/
+function getInvoiceDetails( invoiceKey, accountID ) {
+$('body').css('cursor', 'progress');
+// Prepare our data
+let extraData = {
+'CSRFToken': $('#CSRFToken').val(),
+'invoiceKey': invoiceKey,
+'accountID': accountID
+};
+$('#invoiceDetailBody').load( "/myaccount/views/receipt.html", extraData, function( response, status, xhr ) {
+// Was a redirect received
+if ( xhr.getResponseHeader( 'login' ) ) {
+location.reload();
+} else {
+let invoiceKey = $('#receiptInvoiceKey').val();
+// Hide welcome / reservation history data
+$('body').css('cursor', 'default');
+$('#welcomeHeading, .resHistory, .resPromotions').hide();
+$('#receiptDetailsDiv span#reservationNumber').text(`Reservation: ${invoiceKey}`);
+$('#resDetailsHeading span.reservationNumberHeading').text(`Reservation: ${invoiceKey}`);
+$('#resDetailsHeading, .resDetails').show();
+// Scroll to top of page
+topFunction();
+}
+});
+}
+/**
+* performReceiptAction
+*
+* Provides the following functionality for the button clicked.
+*
+* - Email receipt to email on file
+* - Cancel reservation
+* - Print reservation details
+* - View all to go back
+*
+* @param button
+*/
+function performReceiptAction( button ) {
+switch ( button.id ) {
+case 'viewAllInBtn':
+// var invoiceKey = $('#receiptInvoiceKey').val().split('-')[1];
+// // Show all invoices, keeping the one just viewed 'active'
+// $('#welcomeHeading, .resHistory, .resPromotions').show();
+// $(`#invoiceRow_${invoiceKey}`).addClass('active');
+// // Empty any receipt detail data
+// $('#resDetailsHeading, .resDetails').hide();
+// $('#resDetailsHeading span.reservationNumberHeading').text('');
+// $('#invoiceDetailBody').empty();
+location.reload();
+break;
+case 'resendInBtn':
+// Ajax Data
+let data = {
+'invoiceNumber': $('#receiptInvoiceKey').val(),
+'invoiceDate': $('#receiptDate').val(),
+'accountKey': $('#receiptAccountKey').val(),
+'reserveEmail': $('#receiptEmail').val(),
+'CSRFToken': $('#CSRFToken').val(),
+'email': $('#receiptEmail').val(),
+'sendEmail': true,
+};
+$('#invoiceDetailBodyEmail').load( "/myaccount/views/receipt.html", data, function(response, status, xhr) {
+// Was a redirect received
+if ( xhr.getResponseHeader( 'login' ) ) {
+location.reload();
+} else {
+if( response.trim() != 'BAD' ) {
+$('#recieptEmailStatus #emailSuccess').show();
+$('#recieptEmailStatus #emailFail').hide();
+} else {
+$('#recieptEmailStatus #emailSuccess').hide();
+$('#recieptEmailStatus #emailFail').show();
+}
+$('#recieptEmailStatus').modal('show');
+$('#invoiceDetailBodyEmail').empty();
+$(document).on('click', function() {
+$('#recieptEmailStatus').modal('hide');
+});
+}
+});
+break;
+case 'printInBtn':
+// Print Receipt
+var centerWidth = (window.innerWidth / 2);
+var mywindow = window.open('', 'PRINT', `height=600,width=600,left=${centerWidth}`);
+var printContents = document.getElementById('invoiceDetailBody').innerHTML;
+mywindow.document.write( printContents );
+mywindow.document.close(); // necessary for IE >= 10
+mywindow.focus(); // necessary for IE >= 10*/
+mywindow.print();
+mywindow.close();
+break;
+case 'cancelInBtn':
+var invoiceKey = $('#receiptInvoiceKey').val();
+var email = $('#receiptEmail').val();
+var uuid = $('#receiptUID').val();
+// Clear form before append
+$('#cancelForm').empty();
+$('#cancelForm').append(`<input type="hidden" name="invoicenumber1" value="${invoiceKey.split('-')[0]}">`);
+$('#cancelForm').append(`<input type="hidden" name="invoicenumber2" value="${invoiceKey.split('-')[1]}">`);
+$('#cancelForm').append(`<input type="hidden" name="email" value="${email}">`);
+$('#cancelForm').append(`<input type="hidden" name="uuid" value="${uuid}">`);
+$('#cancelForm').append('<input type="hidden" name="view" value="start">');
+$('#cancelForm').submit();
+break;
+case 'paymentInBtn':
+var invoiceKey = $('#receiptInvoiceKey').val();
+var email = $('#receiptEmail').val();
+var uuid = $('#receiptUID').val();
+// Clear form before append
+$('#onlinePaymentForm').empty();
+$('#onlinePaymentForm').append(`<input type="hidden" name="csrfToken" value="${ $('#CSRFToken').val() }">`);
+$('#onlinePaymentForm').append('<input type="hidden" name="stage" value="1">');
+$('#onlinePaymentForm').append('<input type="hidden" name="validate" value="true">');
+$('#onlinePaymentForm').append(`<input type="hidden" name="uuid" value="${uuid}">`);
+$('#onlinePaymentForm').append(`<input type="hidden" name="invoiceNumber1" value="${invoiceKey.split('-')[0]}">`);
+$('#onlinePaymentForm').append(`<input type="hidden" name="invoiceNumber2" value="${invoiceKey.split('-')[1]}">`);
+$('#onlinePaymentForm').append(`<input type="hidden" name="emailAddress" value="${email}">`);
+$('#onlinePaymentForm').submit();
+break;
+case 'backFromCancelBtn':
+case 'btnBackToDetails':
+default:
+$('#cancelReservationDiv').hide();
+$('#cancelReservation').empty();
+$('#reservationReceiptDiv').show();
+$('#resDetailsHeading').css('display', 'block');
+break;
+}
+}
+/**
+* logout
+*
+* Clear user session logging out of our application. Although this
+* call does not revoke any OAuth Tokens used to grant our app consent to access
+* their public proflie.
+*/
+function logout() {
+// Show logout spinner
+$('.modal-backdrop').remove();
+$('#logoutModal').modal('show');
+// Clear session
+$.ajax({
+type: 'post',
+url: '/myaccount/validateUser.html',
+data: {
+'isAuthorized': true,
+'isLoggedIn': true,
+'CSRFToken': $('#CSRFToken').val(),
+'LogOut': true
+}
+}).done(function() {
+// Reload back to login screen
+location.reload();
+});
+}
+/**
+* revokeAppAccess
+*
+* Show logging out spinner modal, log user out out of account dashboard,
+* disconnecting any application currenty authorized.
+*/
+function revokeAppAccess() {
+}
+/**
+* userPrefs
+*
+* Links to load the user prefs page.
+*
+* @param {Object} data
+* @param {Boolean} save
+*/
+function userPrefs( data = {}, save = false ) {
+// Close any open modal
+if( $('.modal').is(':visible') ) {
+$('.modal').modal('hide');
+}
+// Show as loading
+$('#userPrefsDiv').show();
+$('#welcomeHeading, #resDetailsHeading, #reservationReceiptDiv, #cancelReservationDiv, #editReservationDiv').hide();
+var data = {
+'page': 'userPrefs',
+'userData': JSON.stringify( data ),
+'save': save,
+'CSRFToken': $('#CSRFToken').val()
+};
+$('#userPrefs').load( "/myaccount/views/userPrefs.html", data, function( response, status, xhr ) {
+// Was a redirect received
+if ( xhr.getResponseHeader( 'login' ) ) {
+location.reload();
+} else {
+// Reset CSS
+userPrefsCSS();
+}
+});
+}
+/**
+* userPrefsCSS
+*
+* Resets all the Custom CSS after the ajax load to settings page
+*/
+function userPrefsCSS() {
+$('#welcomeHeading, #resDetailsHeading, #reservationReceiptDiv, #cancelReservationDiv, #editReservationDiv').hide();
+$('#verifyAccountSettingsAlert').remove();
+$('#cancelReservation').empty();
+$('#userPrefsDiv').show();
+// Handles left side nav click
+$('.prefListItems').off('click').on('click', function() {
+$('.prefListItems').removeClass('active');
+$(this).addClass('active');
+var settings = $(this).attr('id');
+// Hide all cards and show selected below
+$('#userPrefsEditContainer .userPrefsContainers, #userPrefsHeading .userPrefsInstructions').hide()
+// Show settings selected
+switch ( settings ) {
+case 'appAccess':
+$('#appAccessContainer, #appAccessInstructions').show();
+break;
+case 'categories':
+$('#categoriesContainer, #categoriesInstructions').show();
+break;
+case 'securityPrefs':
+$('#securityContainer, #securityPrefsInstructions').show();
+break;
+case 'cofPayment':
+$('#cofPaymentContainer, #cofPaymentPrefsInstructions').show();
+break;
+case 'updateContact':
+default:
+$('#updateContactContainer, #updateContactInstructions').show();
+break;
+}
+});
+// Check Google One Tap is enabled in browser
+if( localStorage.getItem( 'GoogleOneTap_CountyofsbGuestAccounts' ) ) {
+$('input[name=googleQuickLogin]').attr('checked', true);
+} else {
+$('input[name=googleQuickLogin]').attr('checked', false);
+}
+}
+/**
+* initializeReservationList
+*
+* Instantiates the datatable and filters for the reservation
+* history list
+*/
+function initializeReservationList() {
+// Only initialize datatable if not already
+if( !$.fn.dataTable.isDataTable("#invoiceList_table") ) {
+// Create our button to Show Canceled Reservations
+$.fn.dataTable.ext.buttons.showCanceled = {
+className: 'cancelFilter showCanceled d-none btn-sm border-0 ms-0 me-2',
+text: 'Show Canceled',
+action: function ( e, dt, node, config ) {
+var invoiceTable = $('#invoiceList_table').DataTable();
+// Apply filter to datatable
+$.fn.dataTable.ext.search.pop();
+invoiceTable.draw();
+$('#invoiceHistoryContainer').find('button.showCanceled').addClass('d-none');
+$('#invoiceHistoryContainer').find('button.hideCanceled').removeClass('d-none');
+}
+};
+// Create our button to Show Canceled Reservations
+$.fn.dataTable.ext.buttons.hideCanceled = {
+className: 'cancelFilter hideCanceled btn-sm border-0 ms-0 me-2',
+text: 'Hide Canceled',
+action: function ( e, dt, node, config ) {
+var invoiceTable = $('#invoiceList_table').DataTable();
+// Apply filter to datatable
+$.fn.dataTable.ext.search.push(
+function(settings, data, dataIndex) {
+return Number( invoiceTable.row(dataIndex).data()[6] ) > 0;
+}
+);
+invoiceTable.draw();
+$('#invoiceHistoryContainer').find('button.showCanceled').removeClass('d-none');
+$('#invoiceHistoryContainer').find('button.hideCanceled').addClass('d-none');
+}
+};
+// Initialize Datatable with custom buttons and table options
+$('#invoiceList_table').DataTable({
+"order": [ [ 2, "desc" ], [ 0, 'asc' ], [ 1, 'desc' ] ],
+scrollX: true,
+sScrollX: "100%",
+sScrollXInner: "100%",
+dom: "<'row mb-2'<'col-sm-12 col-md-8'B><'col-sm-12 col-md-4'f>>" +
+"<'row'<'col-sm-12'tr>>" +
+"<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+buttons: [
+'showCanceled', 'hideCanceled',
+{
+extend: 'csv',
+text: '<i class="fas fa-file-excel" style="font-size: 15px;"></i>',
+className: 'iconBtns border-0 ms-0 me-2',
+exportOptions: {
+columns: [0,1,2,3,4]
+},
+title: 'Santa Barbara Reservations'
+},
+{
+extend: 'print',
+text: '<i class="fas fa-print" style="font-size: 15px;"></i>',
+className: 'iconBtns border-0 ms-0 me-2',
+exportOptions: {
+columns: [0,1,2,3,4]
+}
+}
+],
+columnDefs: [
+{ orderData: 3, targets: 9 },
+]
+});
+/**
+* Are we hiding or showing canceled reservations?
+* Show button accordingly.
+*/
+if( $('#parkCancelFilter') !== undefined ) {
+let cancelFilter = $('#parkCancelFilter').val();
+if( cancelFilter === 'hideCanceled' ) {
+$('#invoiceHistoryContainer').find('button.showCanceled').removeClass('d-none');
+$('#invoiceHistoryContainer').find('button.hideCanceled').addClass('d-none');
+}
+if( cancelFilter === 'showCanceled' ) {
+$('#invoiceHistoryContainer').find('button.showCanceled').addClass('d-none');
+$('#invoiceHistoryContainer').find('button.hideCanceled').removeClass('d-none');
+}
+}
+// Only allow tooltips for non-touch devices
+if( window.matchMedia("(min-width: 991px)").matches ) {
+// Enable tooltips
+$( ".refreshAccounts" ).tooltip();
+}
+// Extra DataTable Custom CSS
+$('#invoiceHistoryContainer').find('.dt-buttons').removeClass('btn-group btn-group-sm').addClass('w-100');
+$( ".cancelFilter, .iconBtns" ).wrapAll( "<div class='col-md-6 col-12 btn-group btn-group-sm' />");
+}
+// Will apply the proper selected filter based on click
+initializeReservationFilters();
+// Make buttons smaller
+$('.dataTables_paginate').addClass('btn-sm');
+// If window size changes, remove set width on reservation list
+$(window).resize(function() {
+// Only allow tooltips for non-touch devices
+if( window.matchMedia("(min-width: 991px)").matches ) {
+// Enable tooltips
+$('[data-toggle="tooltip"], .refreshAccounts').tooltip('enable');
+} else {
+$('[data-toggle="tooltip"], .refreshAccounts').tooltip('disable');
+}
+$('#invoiceList_table').css('width', '');
+$('#invoiceList_table').DataTable().draw();
+});
+}
+/**
+* initializeReservationFilters
+*
+* Creates our filter button listeners.
+*
+* Performs all CSS and JS to show our reservations park dropdown list,
+* and apply filter to datatable based on selection.
+*/
+function initializeReservationFilters() {
+// Will apply the proper selected filter based on click
+$('.filterBtn').on('click', function() {
+// set as active filter
+var button = $(this).data('type');
+var singlePark = $('.filterBtn.park').hasClass('singleParkNoFilter');
+switch ( button ) {
+case 'park':
+$('.cancelFilter.hideCanceled').removeClass('d-none');
+$('#invoiceList_table').DataTable().column(0).search('').draw();
+$('#invoiceList_table').DataTable().column(7).search('').draw();
+var listExpanded = $('.parkName .multi-collapse').hasClass('show');
+$('.filterBtn.allparks, .filterBtn.current, .filterBtn.past').removeClass('active').addClass('inactive');
+if( listExpanded ) {
+$('.filters .allparks, .filters .newReservationBtn').show();
+$('#invoiceHistoryContainer').show();
+} else {
+// show a park dropdown selector
+$(this).addClass('active').removeClass('inactive');
+$('.filters .allparks, .filters .newReservationBtn').hide();
+$('#invoiceHistoryContainer').hide();
+if (window.matchMedia("(max-width: 990px)").matches) {
+// The viewport is less than 990 pixels wide
+$('.filterBtn.allparks, .filterBtn.past, .filterBtn.current, .filterBtn.allParks').hide(); // new reservation btn
+}
+$('.parkName .btn').on('click', function() {
+var park = $(this).data('name');
+if( park === 'all' ) {
+button = 'all';
+park = '';
+}
+$('#parkNameFormFilter').val( park );
+$(this).html('<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>');
+// Show invoices
+$('#invoiceHistoryContainer').show();
+if( park !== '' ) {
+$(this).html( park );
+$('.filterBtn.park').html(`${park}`);
+$('.filters .allparks').show().removeClass('active').addClass('inactive');
+$('.filterBtn.allparks, .filterBtn.current, .filterBtn.past').removeClass('active').addClass('inactive');
+} else {
+$(this).html( '<span><i class="fas fa-angle-left"></i> All Parks</span>' );
+$('#invoiceList_table').DataTable().column(7).search('').draw();
+$('.filterBtn.park').html( '<span>Select Park</span>' );
+$('.filterBtn.park').removeClass('active').addClass('inactive');
+$('.filterBtn.allparks').show().addClass('active').removeClass('inactive');
+}
+// Collapse park list
+$('.filters .newReservationBtn').show();
+$('.filterBtn.allparks, .filterBtn.past, .filterBtn.current, .filterBtn.allParks').show(); // new reservation btn
+$('.multi-collapse').collapse('hide');
+$('.parkSelect').hide();
+$('#parkList').attr('aria-expanded', false);
+// Initialize Datatable
+$('#invoiceList_table').DataTable().column(0).search(park).draw();
+resizeSidebar();
+});
+}
+break;
+case 'past':
+case 'current':
+case 'all':
+$('.cancelFilter.hideCanceled').removeClass('d-none');
+$('#invoiceList_table').DataTable().column(0).search('').draw();
+$('#invoiceList_table').DataTable().column(7).search('').draw();
+var listExpanded = $('.multi-collapse').hasClass('show');
+if( listExpanded ) {
+$('.multi-collapse').collapse('hide');
+$('.parkSelect').hide();
+$('.filters .allparks').show();
+$('#invoiceHistoryContainer').show();
+}
+$(this).find('h4').html('<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>');
+var filter = $(this).data('type');
+if( filter === 'all' ) {
+// Dont update text if only one park available, no park filter applies
+if( !singlePark ) {
+$('.filterBtn.park').html( '<span>Select Park</span>' );
+}
+$('#getArchivedReservationsBtn').parent().show();
+$('.filterBtn.past').html( '<span>Past</span>' );
+$('.filterBtn.current').html( '<span>Current</span>' );
+$('.filterBtn.park, .filterBtn.current, .filterBtn.past').removeClass('active').addClass('inactive');
+$('.filterBtn.allparks').show().addClass('active').removeClass('inactive').html( '<span>All Reservations</span>' );
+// Apply filter to datatable
+$('#invoiceList_table').DataTable().column(7).search('').draw();
+$('#invoiceList_table').DataTable().column(0).search('').draw();
+resizeSidebar();
+} else if( filter === 'past' ) {
+// Dont update text if only one park available, no park filter applies
+if( !singlePark ) {
+$('.filterBtn.park').html( '<span>Select Park</span>' );
+}
+$('.cancelFilter').addClass('d-none');
+$('.buttons-csv').addClass('rounded-left');
+$('#getArchivedReservationsBtn').parent().show();
+$('.filterBtn.past').html( '<span>Past</span>' );
+$('.filterBtn.current').html( '<span>Current</span>' );
+$('.filterBtn.park, .filterBtn.current, .filterBtn.allparks').removeClass('active').addClass('inactive');
+$('.filterBtn.allparks').show().html( '<span>All Reservations</span>' );
+$('.filterBtn.past').addClass('active').removeClass('inactive').html('Past');
+// Apply filter to datatable
+$('#invoiceList_table').DataTable().column(7).search('past').draw();
+$('#invoiceList_table').DataTable().column(0).search('').draw();
+resizeSidebar();
+} else if( filter === 'current' ) {
+// Dont update text if only one park available, no park filter applies
+if( !singlePark ) {
+$('.filterBtn.park').html( '<span>Select Park</span>' );
+}
+$('.cancelFilter').addClass('d-none');
+$('.buttons-csv').addClass('rounded-left');
+$('#getArchivedReservationsBtn').parent().hide();
+$('.filterBtn.past').html( '<span>Past</span>' );
+$('.filterBtn.current').html( '<span>Current</span>' );
+$('.filterBtn.park, .filterBtn.allparks, .filterBtn.past').removeClass('active').addClass('inactive');
+$('.filterBtn.allparks').show().html( '<span>All Reservations</span>' );
+$('.filterBtn.current').addClass('active').removeClass('inactive').html('Current');
+// Apply filter to datatable
+$('#invoiceList_table').DataTable().column(7).search('current').draw();
+$('#invoiceList_table').DataTable().column(0).search('').draw();
+resizeSidebar();
+}
+break;
+case 'singlePark':
+resizeSidebar();
+break;
+default:
+// Apply filter to datatable
+$('#invoiceList_table').DataTable().column(0).search('').draw();
+$('#invoiceList_table').DataTable().column(7).search('').draw();
+resizeSidebar();
+break;
+}
+});
+}
+/**
+* resizeSidebar
+*
+* Keep in sync with datatable and page height
+*/
+function resizeSidebar() {
+// Set a minimum height if no reservations
+let noReservations = $('#invoiceList_table tbody').children().length <= 1;
+if( noReservations ) {
+var maxHeight = '800px';
+} else {
+var reservationsContainer = $('#invoiceHistoryList').css('height');
+var maxHeight = `calc(${reservationsContainer} + 130px)`
+}
+$('#dashboardSideBar').css({
+'overflow-y': 'auto',
+'overflow-x': 'hidden',
+'max-height': maxHeight
+});
+}
+/**
+* backToTop
+*
+* Sends user back to top of page
+*/
+function backToTop() {
+// Scroll to top of page
+$('html').animate({ scrollTop: $(".navbar").offset().top }, 500);
+}
+/**
+* newReservation
+*
+* Bring user to beginning of reservation selection process,
+* while keeping them logged in.
+*/
+function newReservation() {
+$('#newReservationForm').submit();
+}
+/**
+* validateEmail
+*
+* Simple RegEx function to properly validate the user input is an email
+*
+* @param {string}	inputText
+*
+* @return {boolean}
+*/
+function validateEmail( inputText ) {
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if( inputText.match( mailformat ) ) {
+// Valid
+return true;
+}
+// Invalid
+return false;
+}
+/**
+* showHelp
+*
+* Shows a help modal
+*/
+function showHelp() {
+$('#dashboardHelpModal').modal('show');
+}
+/**
+* toggleGoogleOneTap
+*
+* Stores user's pref in Local Storage to enable Google One Tap
+* sign in.
+*
+* @param checkbox
+*/
+function toggleGoogleOneTap( checkbox ) {
+// Set in local storage if enabled
+if( checkbox.checked ) {
+localStorage.setItem( 'GoogleOneTap_CountyofsbGuestAccounts', true );
+} else {
+localStorage.removeItem( 'GoogleOneTap_CountyofsbGuestAccounts' );
+}
+}
+/**
+* toggleGoogleOneTapInfo
+*
+* Provides a modal with information about Google's One Tap
+* sign in prompt.
+*/
+function toggleGoogleOneTapInfo() {
+$('#toggleGoogleOneTapInfoModal').modal('show');
+}
+/**
+* CustomerControl Class Function
+*
+* Control / Update the state of the Customer Control record
+*
+* @param {string} firstName
+* @param {string} lastName
+* @param {string} addr
+* @param {string} city
+* @param {string} state
+* @param {string} zip
+* @param {string} priEmail
+* @param {string} secEmail
+* @param {string} priPhone
+* @param {array} categoryItemKeys
+* @param {string} country
+* @param {string} customJSON
+*/
+function CustomerControl( firstName, lastName, addr, city, state, zip, priEmail, secEmail, priPhone, categoryItemKeys, country, customJSON ) {
+// function properties
+this.firstName = firstName;
+this.lastName = lastName;
+this.addr = addr;
+this.city = city;
+this.state = state;
+this.zip = zip;
+this.priEmail = priEmail;
+this.secEmail = secEmail;
+this.priPhone = priPhone;
+this.categoryItemKeys = {};
+this.customJSON = JSON.parse( customJSON );
+this.country = country;
+// Flag for input validation
+this.outsideUSBillingFlag = ( country === '' ) ? false : true;
+// Data Deletion and Re-Link Reservations Email Confirmation
+this.confirmEmail = '';
+/**
+* Contact Setter Functions
+*/
+this.setFirstName = ( input ) => this.firstName = input.value;
+this.setLastName = ( input ) => this.lastName = input.value;
+this.setAddr = ( input ) => this.addr = input.value;
+this.setCity = ( input ) => this.city = input.value;
+this.setState = ( input ) => this.state = input.value;
+this.setZip = ( input ) => this.zip = input.value;
+this.setCountry = ( input ) => this.country = input.value;
+/**
+* Country Billing Toggle
+*
+* Clear currently set state
+*/
+this.insideUSBilling = () => {
+$('#outsideUSABillingDiv').addClass('d-none');
+$('#insideUSABillingDiv').removeClass('d-none');
+this.city = '';
+this.state = '';
+this.zip = '';
+this.country = '';
+$('#outsideUSABillingDiv input').val('');
+$('#insideUSABillingDiv input, #insideUSABillingDiv select').val('');
+this.outsideUSBillingFlag = false;
+}
+this.outsideUSBilling = () => {
+$('#outsideUSABillingDiv').removeClass('d-none');
+$('#insideUSABillingDiv').addClass('d-none');
+this.city = '';
+this.state = '';
+this.zip = '';
+this.country = '';
+$('#outsideUSABillingDiv input').val('');
+$('#insideUSABillingDiv input, #insideUSABillingDiv select').val('');
+this.outsideUSBillingFlag = true;
+}
+/**
+* Security Setter Functions
+*/
+this.setValidationPref = ( input ) => this.validationPref = input.value;
+/**
+* setSecEmail
+*
+* Before setting the user's email for save,
+* validate proper email format via Regex.
+*
+* @param {string}	input
+*/
+this.setSecEmail = ( input ) => {
+let isValid = validateEmail( input.value );
+if( isValid ) {
+// Set and show valid
+this.secEmail = input.value;
+$('#coSecEmail').removeClass('is-invalid');
+} else {
+// Show invalid
+$('#coSecEmail').addClass('is-invalid');
+this.secEmail = '';
+}
+/**
+* If both phone and email are valid, enable save
+*/
+let invalidPhone = $('#coPriPhone').hasClass('is-invalid');
+let invalidEmail = $('#coSecEmail').hasClass('is-invalid');
+if( this.priPhone !== undefined && this.priPhone.length !== 0 && this.secEmail !== undefined && this.secEmail.length !== 0 ) {
+if( invalidPhone || invalidEmail ) {
+// Disable save button
+$('#btnSaveAccountRecovery').addClass('disabled').attr('disabled', true);
+} else {
+// Enable save button
+$('#btnSaveAccountRecovery').removeClass('disabled').removeAttr('disabled');
+}
+} else {
+// Disable save button
+$('#btnSaveAccountRecovery').addClass('disabled').attr('disabled', true);
+}
+// Remove invalid class if blank
+if( input.value === '' ) {
+$('#coSecEmail').removeClass('is-invalid');
+// Disable save button
+$('#btnSaveAccountRecovery').addClass('disabled').attr('disabled', true);
+}
+}
+/**
+* setPhone
+*
+* Only allow numbers and characters to come through string
+*
+* @param {string} input
+*/
+this.setPhone = ( input ) => {
+let isInvalid = input.value.match(/[A-Za-z]/);
+// Will be null if no matches
+if( isInvalid ) {
+$('#coPriPhone').addClass( 'is-invalid' );
+this.priPhone = '';
+} else {
+this.priPhone = input.value.replace(/^(\d{3})(\d{3})(\d+$)/, "($1) $2-$3");
+$('#coPriPhone').removeClass( 'is-invalid' ).val( this.priPhone );
+}
+/**
+* If both phone and email are valid, enable save
+*/
+let invalidPhone = $('#coPriPhone').hasClass('is-invalid');
+let invalidEmail = $('#coSecEmail').hasClass('is-invalid');
+if( this.priPhone !== undefined && this.priPhone.length !== 0 && this.secEmail !== undefined && this.secEmail.length !== 0 ) {
+if( invalidPhone || invalidEmail ) {
+// Disable save button
+$('#btnSaveAccountRecovery').addClass('disabled').attr('disabled', true);
+} else {
+// Enable save button
+$('#btnSaveAccountRecovery').removeClass('disabled').removeAttr('disabled');
+}
+} else {
+// Disable save button
+$('#btnSaveAccountRecovery').addClass('disabled').attr('disabled', true);
+}
+// Remove invalid class if blank
+if( input.value === '' ) {
+$('#coPriPhone').removeClass('is-invalid');
+// Disable save button
+$('#btnSaveAccountRecovery').addClass('disabled').attr('disabled', true);
+}
+};
+/**
+* setCategory
+*
+* Used to set category item keys for a given customer account.
+*
+* If a category item has been selected, either add or remove from our
+* category items array.
+*
+* @param checkbox
+*/
+this.setCategory = ( checkbox ) => {
+// Add category item key
+if( checkbox.checked ) {
+this.categoryItemKeys.push( checkbox.id );
+} else {
+// Find index and remove from array
+let pos = this.categoryItemKeys.indexOf( checkbox.id );
+this.categoryItemKeys.splice( pos, 1 );
+}
+}
+/**
+* CustomJSON
+*
+* Add Custom data to our JSON object
+*
+* @param {string} key
+* @param {any} value
+*/
+this.setCustomJSON = ( key, value ) => {
+/**
+* CARDONFILE
+*
+* Deselect all other COF
+*/
+if( key === 'CARDONFILE' ) {
+var cardOnFile = typeof Customer.customJSON.CARDONFILE !== 'undefined' ? Customer.customJSON.CARDONFILE : [];
+var isChecked = $(`#cardOnFile_${ value }`).is(':checked');
+// Add if checked
+if( isChecked ) {
+cardOnFile.push( value );
+} else {
+// Deselect
+cardOnFile = cardOnFile.filter(function(item) {
+return item !== value;
+})
+}
+this.customJSON.CARDONFILE = cardOnFile;
+}
+};
+/**
+* save
+*
+* We need to get specific user data based upon
+* the type of save the user is trying to do.
+*
+* Either contact, or security info.
+*
+* @param {string} button
+*/
+this.save = ( button ) => {
+let saveType = $(button).attr('id');
+switch ( saveType ) {
+case 'btnSaveAccountRecovery':
+// Hide our save button
+$('#btnSaveAccountRecovery').removeClass('changesSaved').html('<div class="text-white m-3">Saving...</div>');
+var userData = {
+'type': 'updateAccountRecovery',
+'secEmail': this.secEmail,
+'priPhone': this.priPhone
+};
+break;
+case 'btnSaveCOF':
+// Hide our save button
+$('#btnSaveCOF').removeClass('changesSaved').html('<div class="text-white m-3">Saving...</div>');
+var userData = {
+'type': 'updateCOF',
+'CARDONFILE': this.customJSON.CARDONFILE
+};
+break;
+case 'btnSaveAccountInfo':
+// Hide our save button
+$('#btnSaveAccountInfo').removeClass('changesSaved').html('<div class="text-white m-3">Saving...</div>');
+// Prepare data for ajax save
+var userData = {
+'firstName': this.firstName,
+'lastName': this.lastName,
+'addr': this.addr,
+'city': this.city,
+'state': this.state,
+'zip': this.zip,
+'priEmail': this.priEmail,
+'secEmail': this.secEmail,
+'senior': this.senior,
+'resident': this.resident,
+'birthDate': this.birthDate,
+'categoryItemKeys': JSON.stringify( this.categoryItemKeys ),
+'type': 'contactInfo',
+'country': this.country,
+'outsideUSBillingFlag': this.outsideUSBillingFlag
+};
+break;
+default:
+// None, required.
+break;
+}
+/**
+* Data is prepared, upon function call
+* page will be refreshed and passed data saved
+*/
+userPrefs( userData, true);
+}
+/**
+* deleteAccount
+*
+* Customer has chosen to remove Guest Account.
+* Promt Customer to confirm removal by validating email, then run data deletion.
+*
+* @param {string} confirm
+*/
+this.deleteAccount = ( confirm = false ) => {
+if( confirm && ( Customer.confirmEmail === Customer.priEmail ) ) {
+// Show as being deleted
+$('#btnConfirmDeleteAccountInfo').addClass('d-none');
+$('#btnConfirmDeleteAccountInfoLoading').removeClass('d-none');
+$('#confirmRemovalEmail').attr( 'disabled', true );
+// Ajax Data
+let data = {
+'onlineDataDeletion': true,
+'confirmationEmail': Customer.confirmEmail,
+'CSRFToken': $('#CSRFToken').val()
+}
+/**
+* dataDeletion
+*
+* Performs account removal via data deletion function.
+* Once account has been removed prompt user of account removal status
+* and send to login screen.
+*/
+$.ajax({
+type: 'post',
+url: '/myaccount/delete/delete.html',
+data: data
+}).done(function( response, status, xhr ) {
+// Was a redirect received
+if ( xhr.getResponseHeader( 'login' ) ) {
+location.reload();
+} else {
+setTimeout( () => {
+// Show accounts as deleted, then reload page
+$('#btnConfirmDeleteAccountInfoLoading').html('<div class="m-3 text-white">Okay</div>');
+$('#confirmDataDeletionModal #confirmationText').html('<p class="confirmTitle">Online Account Removed</p><p>You can confirm your account removal <a href="/myaccount/delete/">here</a> or close the page.</p><p>The removal of your account through these actions <strong>does not</strong> affect your reservations in any way. </p>');
+$('#btnConfirmDeleteAccountInfoLoading').off('click').on('click', function() {
+location.reload();
+});
+}, 2000 );
+}
+});
+} else {
+// Show Confirmation
+$('#confirmDataDeletionModal').modal('show');
+// Set delete listeners
+$('#confirmDataDeletionModal').on('shown.bs.modal', function() {
+// Focus input
+$('#confirmRemovalEmail').focus();
+// Validate Email
+$('#confirmRemovalEmail').on('keyup', function( input ) {
+// Keep as not confirmed
+$('#btnConfirmDeleteAccountInfo').addClass('d-none');
+Customer.confirmEmail = '';
+if( input.currentTarget.value.trim() === Customer.priEmail ) {
+$('#btnConfirmDeleteAccountInfo').removeClass('d-none');
+Customer.confirmEmail = input.currentTarget.value.trim();
+}
+});
+});
+}
+}
+/**
+* relink
+*
+* Remove all associated Invoices and re-link
+*
+* @param {string} confirm
+*/
+this.relink = ( confirm = false ) => {
+if( confirm && ( Customer.confirmEmail === Customer.priEmail ) ) {
+// Show as being deleted
+$('#btnConfirmRelink').addClass('d-none');
+$('#btnConfirmRelinkLoading').removeClass('d-none');
+$('#confirmRelinkEmail').attr( 'disabled', true );
+// Ajax Data
+let data = {
+'onlineRelinkInvoices': true,
+'confirmationEmail': Customer.confirmEmail,
+'CSRFToken': $('#CSRFToken').val()
+};
+/**
+* dataDeletion
+*
+* Performs account removal via data deletion function.
+* Once account has been removed prompt user of account removal status
+* and send to login screen.
+*/
+$.ajax({
+type: 'post',
+url: '/myaccount/delete/delete.html',
+data: data
+}).done(function( response, status, xhr ) {
+// Was a redirect received
+if ( xhr.getResponseHeader( 'login' ) ) {
+location.reload();
+} else {
+setTimeout( () => {
+// Show accounts as deleted, then reload page
+$('#btnConfirmRelinkLoading').html('<div class="m-3 text-white">View Reservations</div>');
+$('#confirmRelinkInvoicesModal #confirmationText2').html('<p class="confirmTitle">Reservations Updated</p><p>You may view your updated reservations list <a href="/myaccount">here</a>, or reload the page.</p>');
+$('#btnConfirmRelinkLoading').off('click').on('click', function() {
+location.reload();
+});
+}, 2000 );
+}
+});
+} else {
+// Show Confirmation
+$('#confirmRelinkInvoicesModal').modal('show');
+$('#btnConfirmRelink').addClass('d-none');
+// Set delete listeners
+$('#confirmRelinkInvoicesModal').on('shown.bs.modal', function() {
+// Focus input
+$('#confirmRelinkEmail').focus();
+// Validate Email
+$('#confirmRelinkEmail').on('keyup', function( input ) {
+// Keep as not confirmed
+$('#btnConfirmRelink').addClass('d-none');
+Customer.confirmEmail = '';
+if( input.currentTarget.value.trim() === Customer.priEmail ) {
+$('#btnConfirmRelink').removeClass('d-none');
+Customer.confirmEmail = input.currentTarget.value.trim();
+}
+});
+});
+}
+}
+}
+</script>
+<script>
+// Initialize Global
+var timeoutModalInt;
+var checkTimeoutInt;
+var authLoginTime = new Date( "2025-11-07T11:44:47-08:00" );
+// Email Auth Objects
+var VerifyEmail = new EmailVerification();
+// Get CSRF Token
+var csrfToken = $('#CSRFToken').val();
+/**
+* Document Loaded
+*/
+$(document).ready(function() {
+// Adjust logos
+// adjustFooter();
+// Add listener
+// window.addEventListener('resize', adjustFooter );
+// Set Global variables
+resetTimeouts();
+/**
+* validAuthSession
+*
+* Check to see if user has already been validated first through
+* our provided Auth SDK and then server side. If so, allow access rather than
+* performing whole login flow.
+*/
+});
+/**
+* adjustFooter
+*
+* Adjust logos in footer based upon screen size
+*
+* Due to different bootstrap versions between Guest Accounts and
+* the Reserve footer, wrap footer logos.
+*/
+function adjustFooter() {
+if( window.innerWidth <= 575 ) {
+// Remove footer logos
+$('.footerLogo').first().parent().css({
+'display': '',
+'flex-wrap': '',
+'margin-top': '',
+'margin-right': '',
+'margin-left': ''
+});
+} else {
+// Wrap footer logos
+$('.footerLogo').first().parent().css({
+'display':'flex',
+'flex-wrap': 'wrap',
+'margin-top': 'calc(var(--bs-gutter-y) * -1)',
+'margin-right': 'calc(var(--bs-gutter-x)/ -2)',
+'margin-left': 'calc(var(--bs-gutter-x)/ -2)'
+});
+}
+}
+/**
+* checkTimeout
+*
+* Prepare our Last Visit request and our Current Request time
+* and compare using moment.js
+*
+* If our idle time is greater than 60 minutes, call timeout modal
+* to prepare logout. Otherwise, check every minute.
+*/
+function checkTimeout() {
+// Browser date and convert to unix
+var nowTime = new Date();
+var sessionTimeout = 180;
+/**
+* Alert timeout?
+*
+* Show modal if greater than 1 hour, else
+* check back in 60 seconds.
+*/
+if( ( ( nowTime.getTime() - authLoginTime.getTime() ) / 60000 ) >= sessionTimeout ) {
+let modalVisible = $('#sessionExpiredModal').is(':visible');
+// Just send to login if modal already open
+if( modalVisible ) {
+$('#sessionExpiredForm').submit();
+} else {
+// Show Modal
+$('#sessionExpiredModal').modal('show');
+// Go to login on click
+$(document).off('click').on('click', function() {
+$(document).off('click');
+$('#sessionExpiredForm').submit();
+});
+// Call timeout again to automatically logout in 1 minute
+checkTimeoutInt = setTimeout( checkTimeout, 60000 );
+}
+} else {
+// Recall
+checkTimeoutInt = setTimeout( checkTimeout, 60000 );
+}
+}
+/**
+* resetTimeouts
+*
+* Resets timeout variables to check user idle time.
+*/
+function resetTimeouts() {
+// Clear our recursive functions
+clearTimeout( timeoutModalInt );
+clearTimeout( checkTimeoutInt );
+// Init Idle Check
+checkTimeout();
+}
+/**
+* scrollFunction
+*
+* When the user scrolls down 20px from the top of the document, show the button
+*/
+function scrollFunction() {
+var toTopBtn = $('.scrollTop');
+if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+toTopBtn.removeClass( 'd-none' );
+// $('#toolsNewReservationBtn').css( 'right', '-206px' );
+} else {
+toTopBtn.addClass( 'd-none' );
+// $('#toolsNewReservationBtn').css( 'right', '-26px' );
+}
+}
+/**
+* topFunction
+*
+* When the user clicks on the button, scroll to the top of the document
+*/
+function topFunction() {
+document.body.scrollTop = 0; // For Safari
+document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
+
+
+<div id="lightboxOverlay" class="lightboxOverlay" style="display: none;"></div><div id="lightbox" class="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="><div class="lb-nav"><a class="lb-prev" href=""></a><a class="lb-next" href=""></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div></body></html>

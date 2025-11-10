@@ -84,12 +84,16 @@ class SearchSantaBarbaraCountyParks(BaseCampingSearch):
         # If weekends_only and nights not explicitly set to 2, use 2 nights
         nights = self.nights if self.nights > 1 else (2 if self.weekends_only else 1)
         
+        logger.info(f"Searching {len(search_days)} days with {nights} night stays")
+        
         # Search each campground for each search day
         for campground_id in campground_ids:
             for search_day in search_days:
                 # Create datetime for start and end
                 start_date = dt.combine(search_day, dt.min.time())
                 end_date = start_date + timedelta(days=nights)
+                
+                logger.debug(f"Searching {search_day.strftime('%a %Y-%m-%d')} for {nights} nights")
                 
                 try:
                     campsites = self.campsite_finder.get_campsites(
