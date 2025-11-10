@@ -290,16 +290,12 @@ class CamavaProvider(BaseProvider):
             logger.info("   No available sites found for these dates")
             return []
         
-        # Track unique sites (may appear multiple times in HTML)
+        # Track unique sites by (site_name, start_date, end_date) to avoid duplicates
+        # The HTML may contain multiple data-id values for the same physical site
         seen_sites = set()
         
         for div in site_divs:
             site_id = div.get('data-id')
-            
-            # Skip if we've already processed this site
-            if site_id in seen_sites:
-                continue
-            seen_sites.add(site_id)
             
             # Extract site information
             site_info = self._extract_site_info(
@@ -307,6 +303,19 @@ class CamavaProvider(BaseProvider):
             )
             
             if site_info:
+                # Create unique key based on site name and dates
+                site_key = (
+                    site_info.campsite_site_name,
+                    site_info.booking_date,
+                    site_info.booking_end_date
+                )
+                
+                # Skip if we've already processed this site for these dates
+                if site_key in seen_sites:
+                    logger.debug(f"   Skipping duplicate: {site_info.campsite_site_name} (ID: {site_id})")
+                    continue
+                    
+                seen_sites.add(site_key)
                 campsites.append(site_info)
         
         return campsites
