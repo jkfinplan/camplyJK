@@ -351,8 +351,10 @@ class CamavaProvider(BaseProvider):
             site_match = re.search(r'Site\s+(\d+[A-Z]?)', text, re.IGNORECASE)
             if site_match:
                 site_name = f"Site {site_match.group(1)}"
+                site_number = site_match.group(1)  # Just the number part
             else:
                 site_name = f"Site {site_id}"
+                site_number = site_id
             
             # Extract price
             price_match = re.search(r'Use Fee:\s*\$(\d+(?:\.\d{2})?)', text)
@@ -385,9 +387,9 @@ class CamavaProvider(BaseProvider):
                 except:
                     pass
             
-            # Create booking URL with site ID as URL fragment for uniqueness
-            # Note: Camava doesn't use this, but it makes URLs unique for logging
-            booking_url = f"{self.base_url}{self.reservation_path}#site-{site_id}"
+            # Create booking URL with actual site number for reference
+            # Note: Camava doesn't support direct site links, but this provides context
+            booking_url = f"{self.base_url}{self.reservation_path}#site-{site_number}"
             
             # Create campsite object
             campsite = AvailableCampsite(
