@@ -3,6 +3,7 @@ Search for Camava Providers
 """
 
 import logging
+import re
 from typing import Any, List, Optional, Union
 
 from camply.containers import AvailableCampsite, SearchWindow
@@ -30,6 +31,7 @@ class SearchSantaBarbaraCountyParks(BaseCampingSearch):
         search_window: Union[SearchWindow, List[SearchWindow]],
         weekends_only: bool = False,
         campgrounds: Optional[Union[List[str], str]] = None,
+        campsites: Optional[Union[List[str], str]] = None,
         nights: int = 1,
         offline_search: bool = False,
         offline_search_path: Optional[str] = None,
@@ -46,6 +48,8 @@ class SearchSantaBarbaraCountyParks(BaseCampingSearch):
             Whether to only search for weekend availabilities
         campgrounds: Optional[Union[List[str], str]]
             Campground ID or List of Campground IDs (1=Cachuma, 2=Jalama)
+        campsites: Optional[Union[List[str], str]]
+            Specific campsite numbers to search for (e.g., 47, 45)
         nights: int
             Minimum number of consecutive nights to search per campsite
         offline_search: bool
@@ -62,6 +66,7 @@ class SearchSantaBarbaraCountyParks(BaseCampingSearch):
             **kwargs,
         )
         self.campgrounds = make_list(campgrounds)
+        self.campsites = make_list(campsites) if campsites else None
 
     def get_all_campsites(self) -> List[AvailableCampsite]:
         """
@@ -109,6 +114,20 @@ class SearchSantaBarbaraCountyParks(BaseCampingSearch):
                     all_campsites.extend(campsites)
                 except Exception as e:
                     logger.error(f"Error searching campground {campground_id}: {e}")
+        
+        # Filter by specific campsite numbers if provided
+        if self.campsites:
+            logger.info(f"Filtering to specific campsites: {', '.join(str(c) for c in self.campsites)}")
+            filtered_campsites = []
+            for campsite in all_campsites:
+                # Extract site number from campsite_site_name (e.g., "Site 47" -> "47")
+                site_match = re.search(r'Site\s+(\d+[A-Z]?)', campsite.campsite_site_name, re.IGNORECASE)
+                if site_match:
+                    site_number = site_match.group(1)
+                    if site_number in self.campsites or str(site_number) in [str(c) for c in self.campsites]:
+                        filtered_campsites.append(campsite)
+            
+            return filtered_campsites
         
         return all_campsites
 
