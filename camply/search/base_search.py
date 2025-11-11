@@ -418,11 +418,11 @@ class BaseCampingSearch(ABC):
                 and len(logged_campsites) > minimum_first_notify
             ):
                 error_message = (
-                    f"Found more than {minimum_first_notify} "
-                    f"matching campsites ({len(logged_campsites)}) on the "
-                    "first try. Try searching online instead. "
+                    f"Great news! Found {len(logged_campsites)} available campsites on the "
+                    "first try - that's a lot of availability! "
                     f"camply is only sending the first "
                     f"{minimum_first_notify} notifications. "
+                    "Try searching online to see all options. "
                     "Go Get your campsite! 🏕"
                 )
                 logger.warning(error_message)
