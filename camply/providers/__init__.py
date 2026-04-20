@@ -14,6 +14,7 @@ from .recreation_dot_gov.recdotgov_tours import (
     RecreationDotGovTimedEntry,
 )
 from .camava.variations import SantaBarbaraCountyParks
+from .reserve_america import OregonStateParksRA
 from .usedirect.variations import (
     AlabamaStateParks,
     ArizonaStateParks,
@@ -31,6 +32,7 @@ from .usedirect.variations import (
 from .xanterra.yellowstone_lodging import Yellowstone
 
 ProviderType = Union[
+    OregonStateParksRA,
     GoingToCamp,
     RecreationDotGov,
     RecreationDotGovDailyTicket,
@@ -56,6 +58,7 @@ ProviderType = Union[
 __all__ = [
     "BaseProvider",
     "ProviderType",
+    "OregonStateParksRA",
     "GoingToCamp",
     "RecreationDotGov",
     "RecreationDotGovDailyTicket",

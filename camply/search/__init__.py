@@ -6,6 +6,7 @@ from typing import Dict, List, Type
 
 from camply.search.base_search import BaseCampingSearch
 from camply.search.search_going_to_camp import SearchGoingToCamp
+from camply.search.search_reserve_america import SearchOregonStateParksRA
 from camply.search.search_recreationdotgov import (
     SearchRecreationDotGov,
     SearchRecreationDotGovDailyTicket,
@@ -55,6 +56,7 @@ __search_providers__: List[Type[BaseCampingSearch]] = [
     SearchRecreationDotGovTimedEntry,
     SearchRecreationDotGovDailyTicket,
     SearchRecreationDotGovDailyTimedEntry,
+    SearchOregonStateParksRA,
 ]
 
 CAMPSITE_SEARCH_PROVIDER: Dict[str, Type[BaseCampingSearch]] = {

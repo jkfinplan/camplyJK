@@ -159,3 +159,26 @@ ReserveCalifornia is one of many providers that use the UseDirect API. The follo
 - **`FairfaxCountyParks`**: Searches on [fairfax.usedirect.com](https://fairfax.usedirect.com) for Campsites (Virginia)
 - **`MaricopaCountyParks`**: Searches on [MaricopaCountyParks.org](https://maricopacountyparks.org) for Campsites (Arizona)
 - **`OregonMetro`**: Searches on [OregonMetro.gov](https://oregonmetro.gov) for Campsites (Portland Metro)
+
+### OregonStateParksRA
+
+[Oregon State Parks](https://oregonstateparks.reserveamerica.com/) reservations on Reserve America use contract code **`OR`**. This provider uses the same JSON API as the Reserve America mobile app (`api.reserveamerica.com`). It works for parks supported by that API; some inventory may redirect to other booking flows (see [issue #321](https://github.com/juftin/camply/issues/321)).
+
+```commandline
+camply recreation-areas --provider OregonStateParksRA --search "Tumalo" --state OR
+```
+
+```commandline
+camply campgrounds --provider OregonStateParksRA --search "Tumalo" --state OR
+```
+
+```commandline
+camply campsites \
+    --provider OregonStateParksRA \
+    --start-date 2026-07-01 \
+    --end-date 2026-07-07 \
+    --campground 402486 \
+    --notifications silent
+```
+
+`402486` is [Tumalo State Park](https://oregonstateparks.reserveamerica.com/camping/tumalo-state-park/r/campgroundDetails.do?contractCode=OR&parkId=402486) (`contractCode=OR`, `parkId=402486`).

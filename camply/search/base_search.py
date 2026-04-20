@@ -889,22 +889,26 @@ class BaseCampingSearch(ABC):
                     f"\t⛰️  {'  🏕  '.join(location_tuple)}: ⛺ "
                     f"{len(campground_availability)} sites"
                 )
-                if verbose is True:
-                    for (
-                        booking_nights,
-                        nightly_availability,
-                    ) in campground_availability.groupby(
-                        DataColumns.BOOKING_NIGHTS_COLUMN
-                    ):
-                        unique_urls = nightly_availability[
-                            DataColumns.BOOKING_URL_COLUMN
-                        ].unique()
-                        for booking_url in sorted(unique_urls):
-                            logger.info(
-                                f"\t\t🔗 {booking_url} "
-                                f"({booking_nights} night"
-                                f"{'s' if booking_nights > 1 else ''})"
-                            )
+                for _, row in campground_availability.iterrows():
+                    nights = int(row[DataColumns.BOOKING_NIGHTS_COLUMN])
+                    night_label = f"{nights} night" + ("s" if nights > 1 else "")
+                    logger.info(
+                        "\t\t⛺ %s (id=%s) — %s — 🔗 %s",
+                        row["campsite_site_name"],
+                        row["campsite_id"],
+                        night_label,
+                        row[DataColumns.BOOKING_URL_COLUMN],
+                    )
+                    if verbose is True:
+                        loop = row.get("campsite_loop_name")
+                        st = row.get("campsite_type")
+                        parts = []
+                        if loop:
+                            parts.append(f"loop: {loop}")
+                        if st:
+                            parts.append(str(st))
+                        if parts:
+                            logger.info("\t\t   %s", " · ".join(parts))
         return availability_df
 
     def unload_campsites_to_file(self) -> pathlib.Path:

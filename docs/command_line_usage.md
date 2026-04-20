@@ -986,6 +986,19 @@ camply campsites \
 
     **`ReserveCalifornia`** doesn't yet support searching / filtering by *equipment*.
 
+### Search OregonStateParksRA
+
+[OregonStateParksRA](providers.md#oregonstateparksra) targets [Oregon State Parks](https://oregonstateparks.reserveamerica.com/) on Reserve America (contract **`OR`**). Use **`--state OR`** for recreation area and campground searches. Pass **`--campground`** or **`--rec-area`** with the park facility id from the Reserve America URL (`parkId`).
+
+```commandline
+camply campsites \
+    --provider OregonStateParksRA \
+    --start-date 2026-07-01 \
+    --end-date 2026-07-07 \
+    --campground 402486 \
+    --notifications silent
+```
+
 ### Run camply as a CRON Job
 
 In some instances you don't want to run camply as a continuous, blocking Python
