@@ -418,15 +418,20 @@ class BaseCampingSearch(ABC):
                 and len(logged_campsites) > minimum_first_notify
             ):
                 error_message = (
-                    f"Found more than {minimum_first_notify} "
-                    f"matching campsites ({len(logged_campsites)}) on the "
-                    "first try. Try searching online instead. "
+                    f"Great news! Found {len(logged_campsites)} available campsites on the "
+                    "first try - that's a lot of availability! "
                     f"camply is only sending the first "
                     f"{minimum_first_notify} notifications. "
+                    "Try searching online to see all options. "
                     "Go Get your campsite! 🏕"
                 )
                 logger.warning(error_message)
-                notifier.send_message(message=error_message)
+                # Create subject with campground name and date
+                first_campsite = logged_campsites[0]
+                campground_name = first_campsite.facility_name
+                booking_date = first_campsite.booking_date.strftime("%Y-%m-%d")
+                subject = f"Lots of Availability ({len(logged_campsites)} sites): {campground_name} - {booking_date}"
+                notifier.send_message(message=error_message, subject=subject)
                 logged_campsites = logged_campsites[:minimum_first_notify]
             notifier.send_campsites(campsites=logged_campsites)
 
